@@ -1,0 +1,18 @@
+http://www.gamefromscratch.com/post/2015/06/02/Creating-an-SFML-project-on-Mac-OS-using-CLion-and-CMake.aspx
+
+//    sf::Font font;
+//    font.loadFromFile("OpenSans/OpenSans-Bold.ttf");
+//
+//    sf::Text text("Hello Bellina!!",font, 11);
+//    text.setCharacterSize(62);
+//    text.setPosition(window.getSize().x/2 - text.getGlobalBounds().width/2,
+//                     window.getSize().y/2 - text.getGlobalBounds().height/2);
+
+//glClearColor(1.f,0.f,1.f,1.f);
+            // window.clear(sf::Color::Black);
+            //glClear(GL_COLOR_BUFFER_BIT);
+//            window.draw(text);
+
+#include <SFML/Graphics.hpp>
+#include "GL/glew.h"
+#include <iostream>
