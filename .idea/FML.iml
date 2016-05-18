@@ -2,12 +2,11 @@
 <module type="CPP_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/g2-sfml/g2-sfml-core.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/g2-sfml/g2-sfml.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/samples/main.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/cmake_modules/FindSFML.cmake" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/cmake_modules/FindGLEW.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/g2/g2-core.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/xel/xel.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/xel/xel.cpp" isTestSource="false" />
     </content>

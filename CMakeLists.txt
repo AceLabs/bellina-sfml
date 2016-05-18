@@ -3,12 +3,14 @@ project(FML)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES main.cpp g2-sfml/g2-sfml.h g2-sfml/g2-sfml-core.cpp xel/xel.h xel/xel.cpp)
+#set(GO_ROOT MyApp/_obj)
+#set(GO_FILES ${GO_ROOT}/_cgo_export.c ${GO_ROOT}/_cgo_main.c ${GO_ROOT}/MainGo.cgo2.c )
+set(SOURCE_FILES samples/main.cpp g2/g2-core.cpp xel/xel.cpp) # ${GO_FILES} )
 add_executable(FML ${SOURCE_FILES})
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake_modules")
 
-find_package(SFML REQUIRED system window graphics network audio)
+find_package(SFML REQUIRED system window graphics)
 find_package(GLEW REQUIRED)
 find_package(OPENGL REQUIRED)
 

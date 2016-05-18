@@ -2,17 +2,27 @@
 
 using namespace sf;
 
-RenderWindow* xel_window;
+namespace xel {
 
-void (*xel_g_afterGL_callback)() = 0;
-void (*xel_g_beforeGLDeleted_callback)() = 0;
-void (*xel_g_tick_callback)() = 0;
-void (*xel_g_key_callback)(bool isKeyDown, sf::Keyboard::Key key) = 0;
-void (*xel_g_mouse_move_callback)(int mouseX, int mouseY) = 0;
-void (*xel_g_mouse_button_callback)(bool isButtonDown, int x, int y, Mouse::Button button) = 0;
+    RenderWindow *window;
+
+    void (*g_afterGL_callback)() = 0;
+
+    void (*g_beforeGLDeleted_callback)() = 0;
+
+    void (*g_tick_callback)() = 0;
+
+    void (*g_key_callback)(bool isKeyDown, sf::Keyboard::Key key) = 0;
+
+    void (*g_mouse_move_callback)(int mouseX, int mouseY) = 0;
+
+    void (*g_mouse_button_callback)(bool isButtonDown, int x, int y, Mouse::Button button) = 0;
+}
+
+using namespace xel;
 
 void xel_init() {
-    xel_window = new RenderWindow( VideoMode(1280, 800, 32), "Hello Bellina!" );
+    window = new RenderWindow( VideoMode(1280, 800, 32), "Hello Bellina!" );
 }
 
 void xel_callback( void (*OnAfterGL)(),
@@ -22,53 +32,53 @@ void xel_callback( void (*OnAfterGL)(),
                    void (*OnMouseMove)(int mouseX, int mouseY),
                    void (*OnMouseButton)(bool isButtonDown, int x, int y, Mouse::Button button)) {
 
-    xel_g_afterGL_callback = OnAfterGL;
-    xel_g_beforeGLDeleted_callback = OnBeforeGLDeleted;
-    xel_g_tick_callback = OnTick;
-    xel_g_key_callback = OnKey;
-    xel_g_mouse_move_callback = OnMouseMove;
-    xel_g_mouse_button_callback = OnMouseButton;
+    g_afterGL_callback = OnAfterGL;
+    g_beforeGLDeleted_callback = OnBeforeGLDeleted;
+    g_tick_callback = OnTick;
+    g_key_callback = OnKey;
+    g_mouse_move_callback = OnMouseMove;
+    g_mouse_button_callback = OnMouseButton;
 }
 
 void xel_uninit() {
-    delete xel_window;
+    delete window;
 }
 
 void xel_loop() {
 
-    if (xel_g_afterGL_callback)
-        xel_g_afterGL_callback();
+    if (g_afterGL_callback)
+        g_afterGL_callback();
 
-    while (xel_window->isOpen()) {
+    while (window->isOpen()) {
 
         Event event;
 
-        while (xel_window->pollEvent(event)) {
+        while (window->pollEvent(event)) {
 
             if (event.type == Event::MouseMoved) {
-                if (xel_g_mouse_move_callback)
-                    xel_g_mouse_move_callback( event.mouseMove.x, event.mouseMove.y);
+                if (g_mouse_move_callback)
+                    g_mouse_move_callback( event.mouseMove.x, event.mouseMove.y);
             }
             else if (event.type == Event::MouseButtonPressed || event.type == Event::MouseButtonReleased) {
-                if (xel_g_mouse_button_callback)
-                    xel_g_mouse_button_callback( event.type == Event::MouseButtonPressed, event.mouseButton.x, event.mouseButton.y, event.mouseButton.button);
+                if (g_mouse_button_callback)
+                    g_mouse_button_callback( event.type == Event::MouseButtonPressed, event.mouseButton.x, event.mouseButton.y, event.mouseButton.button);
             }
             else if (event.type == Event::KeyPressed || event.type == Event::KeyReleased) {
-                if (xel_g_key_callback) {
-                    xel_g_key_callback(event.type == Event::KeyPressed, event.key.code);
+                if (g_key_callback) {
+                    g_key_callback(event.type == Event::KeyPressed, event.key.code);
                 }
             }
             else if (event.type == sf::Event::Closed) {
-                if (xel_g_beforeGLDeleted_callback)
-                    xel_g_beforeGLDeleted_callback();
+                if (g_beforeGLDeleted_callback)
+                    g_beforeGLDeleted_callback();
 
-                xel_window->close();
+                window->close();
             }
         }
 
-        if (xel_g_tick_callback)
-            xel_g_tick_callback();
+        if (g_tick_callback)
+            g_tick_callback();
 
-        xel_window->display();
+        window->display();
     }
 }

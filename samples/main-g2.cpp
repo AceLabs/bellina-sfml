@@ -1,8 +1,10 @@
 #include <cstdio>
 #include "xel/xel.h"
+#include "g2/g2.h"
 
 void OnAfterGL() {
     printf( "On After GL\n" );
+    g2_init();
 }
 
 void OnBeforeGL() {
@@ -24,7 +26,17 @@ void OnKey(bool isDown, sf::Keyboard::Key key) {
 }
 
 void OnTick() {
-    //printf( "on tick\n" );
+    g2_clear();
+
+    g2_color(128,0,0);
+    g2_rect(G2_COLOR,10,10,800,600);
+
+    g2_color(0,128,0);
+    g2_rect(G2_COLOR,100,100,800,600);
+
+    for(int i=0;i<100;i++)
+        for(int j=0;j<100;j++)
+            g2_text(i,j,"hello", 14);
 }
 
 int main() {
