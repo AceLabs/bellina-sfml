@@ -13,6 +13,6 @@ void g2_alpha(int alpha);
 
 void g2_rect(unsigned int flags, int left, int top, int width, int height);
 
-void g2_text(int left, int top, char* text, int size);
+void g2_text(unsigned int flags, int left, int top, char* text, int size);
 
 #endif

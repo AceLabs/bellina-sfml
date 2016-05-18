@@ -30,11 +30,8 @@ void OnTick() {
     g2_color(0,128,0);
     g2_rect(G2_COLOR,100,100,800,600);
 
-    for(int i=0;i<500;i++)
-        for(int j=0;j<500;j++)
-            g2_text(i,j,"hello", 14);
-
-
+    g2_alpha(12);
+    g2_text(G2_ALPHA, 10,10,"hello", 44);
 }
 
 int main() {
